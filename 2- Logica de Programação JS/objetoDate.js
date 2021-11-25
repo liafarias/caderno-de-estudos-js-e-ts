@@ -11,7 +11,7 @@
  */
 
 //TRABALHANDO COM A DATA
-const data = new Date('2019-04-20 10:24:59');
+const data = new Date();
 
 console.log('Dia', data.getDate());
 console.log('Semana', data.getDay()); // semana começa no domingo (domingo = 0, segunda = 1, terça = 2 etc)
