@@ -15,4 +15,3 @@ for (let n of num){
         break; // usado para sair do laço (parar o codigo depois do 'break')
     }
 }
-
