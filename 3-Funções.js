@@ -250,9 +250,141 @@ const sobrenome = 'Silva'
  * 
  */
 
+  console.log(' '); // apenas para organizar
 
+ console.log('FUNÇÃO CONSTRUTORA'); //titulo
 
-                //ESCREVER O RESTO AQUI
+/**
+ * Sempre iniciar o nome com a letra maiscula
+ * Sempre usar a palavra (new)
+ * Exemplo -> new Pessoa
+ */
+
+function Pessoa(nome, sobrenome){
+    // atributios ou metodos privados
+    const ID = 123456;
+    const metodoInterno = function(){
+
+    };
+    // atributios ou metodos publicos
+    this.nome = nome
+    this.sobrenome = sobrenome
+
+    this.metodo = function(){
+        console.log(this.nome + ': sou um método');
+    }
+}
+
+const pessoa1 = new Pessoa ('Luiz', 'Otávio');
+const pessoa2 = new Pessoa ('Maria', 'Oliveira')
+const pessoa3 = new Pessoa ('Sara', 'Silva');
+
+console.log(pessoa2.nome); // 'Maria'
+pessoa2.metodo();
+
+ /**
+ * 
+ * PROXIMO ASSUNTO >>>>>
+ * 
+ */
+
+  console.log(' '); // apenas para organizar
+
+ console.log('FUNÇÃO RECURSIVA'); //titulo
+
+ function recursiva(max){
+     if(max >= 10) return;
+     max++; //somar +1
+     recursiva(max); // chamar novamente a função
+     console.log(max);
+ }
+ recursiva(0); //declarar a função
+
+  /**
+ * 
+ * PROXIMO ASSUNTO >>>>>
+ * 
+ */
+
+   console.log(' '); // apenas para organizar
+
+   console.log('FUNÇÃO GERADORAS'); //titulo
+
+function* geradora1(){
+    //codigo qualquer.....
+    yield 'valor 1';
+    //codigo qualquer.....
+    yield 'valor 2';
+    //codigo qualquer.....
+    yield 'valor 3';
+}
+
+const g1 = geradora1();
+console.log(g1.next().value); // para ver o valor
+for (let valor of g1){
+    console.log(valor);
+}
+
+console.log(' '); // apenas para organizar
+
+function* geradora2(){
+    let i = 0;
+
+    while(true){
+        yield i;
+        i++
+    }
+}
+
+const g2 = geradora2();
+console.log(g2.next().value);
+console.log(g2.next().value);
+console.log(g2.next().value);
+console.log(g2.next().value);
+console.log(g2.next().value);
+
+console.log(' '); // apenas para organizar
+
+function* geradora3(){
+    yield 0;
+    yield 1;
+    yield 2;
+}
+
+function* geradora4(){
+    yield* geradora3(); // delegar outra função
+    yield 3;
+    yield 4;
+    yield 5;
+}
+
+const g4 = geradora4();
+for(let valor of g4){
+    console.log(valor);
+}
+
+console.log(' '); // apenas para organizar
+console.log('EXEMPLO APLICADO'); // apenas para organizar
+
+function* geradora5(){
+    yield function(){
+        console.log('Vim do y1');
+    }
+
+    //......
+    // return -> para o codigo e tudo depois dele não será executado.
+
+    yield function(){
+        console.log('Vim do y2');
+    }
+}
+
+const g5 = geradora5();
+const funcao1 = g5.next().value;
+const funcao2 = g5.next().value;
+
+funcao1();
+funcao2();
 
 /**
  * 
