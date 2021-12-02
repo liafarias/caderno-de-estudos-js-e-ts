@@ -200,3 +200,104 @@ console.log(adicionarID);
 });
 console.log(adicionarID);
 */
+
+/**
+ * PROXIMO ASSUNTO >>>>>>>>>>>>>>>>
+ */
+
+ console.log(' '); // para organizar
+ console.log('Reduce - Reduzindo um array'); // titulo
+
+ //Utilizado para reduzir um array
+ const idades = [11, 33, 67, 59, 44, 20, 54]
+ //para somar tudo e reduzir o array
+ const todasAsIdades = idades.reduce(function(acumulador, valor){
+     acumulador += valor;
+     return acumulador;
+ }, 0)//0 = valor inicial para o acumulador (pode ser qualquer numero)
+ console.log(todasAsIdades);
+
+ //Retorne a pessoa mais velha
+ const pessoas2 = [
+    { nome: 'Luiz', idade: 62},
+    { nome: 'Maria', idade: 23},
+    { nome: 'Eduardo', idade: 55},
+    { nome: 'Leticia', idade: 19},
+    { nome: 'Rosana', idade: 64},
+    { nome: 'Wallace', idade: 63},
+ ];
+ const maisVelha = pessoas2.reduce(function(acumulador, valor){
+    if(acumulador.idade > valor.idade) return acumulador;
+    return valor;
+ })
+ console.log(maisVelha);
+
+/**
+ *          EXERCICIO >>>>>>>
+ */
+
+
+
+ console.log(' '); // para organizar
+ console.log('Filter + Map + Reduce'); // titulo
+ 
+ /** EXEMPLO UTILIZANDO TODOS OS METODOS (REDUCE, FILTER, MAP)
+  * Some todos os numeros (reduce)
+  * Retorne um array com os pares (filter)
+  * Retorne um array com o dobro dos valores (Map)
+  */
+
+  const numbers = [5, 50, 80, 1, 2, 3, 5, 8, 7, 11, 15, 22, 27];
+
+  const totalNum = numbers.reduce(function(acumulador, valor, indice, array){
+return acumulador += valor;
+  }, 0);
+  console.log(totalNum);
+
+  const numPares = numbers.filter(function(valor){
+      return valor %2 === 0
+  })
+  console.log(numPares);
+
+  const numDobro = numbers.map(function(valor){
+      return valor * 2
+  })
+  console.log(numDobro);
+  console.log(' ------------ ');
+
+  /**
+   * Retorne a soma do dobro de todos os pares
+   * Filtrar apenas os pares
+   * Dobrar os valores
+   * Reduzir (somar tudo)
+   */
+
+  const exercicioCompleto = [5, 50, 80, 1, 2, 3, 5, 8, 7, 11, 15, 22, 27];
+  const filtrarPares = exercicioCompleto.filter(function(valor){
+      return valor %2 === 0;
+  }).map(function(valor){
+      return valor * 2
+  }).reduce(function(acumulador, valor){
+    acumulador += valor;
+    return acumulador
+}, 0);
+
+  console.log(filtrarPares);
+
+  /**
+ * PROXIMO ASSUNTO >>>>>>>>>>>>>>>>
+ */
+
+ console.log(' '); // para organizar
+ console.log('ForEach'); // titulo
+
+ //Uma forma diferente de interrar sobre o array
+ // Só está disponiveis em array
+
+ const a1 = [10, 20, 30, 40, 50, 60, 70, 80, 90];
+let total = 0;
+ adicionados.forEach(function(valor, indice, array){
+     total += valor;
+ });
+
+ console.log(total);
