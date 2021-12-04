@@ -204,3 +204,248 @@ console.log(produto2);
 console.dir(pessoaa1.nomeCompleto());
 console.dir(pessoaa2);
 console.dir(data)
+
+/**
+ * 
+ *   PROXIMO ASSUNTO >>>>>>>>>>>
+ * 
+ */
+
+ console.log(' ');
+ console.log('Manipulando Prototypes'); //titulo
+
+//new Object (funções construtoras) -> Object.prototype(pai -> ultimo da cadeia)
+const objA = {
+    chaveA: 'A'
+    //__proto__: Object.prototype
+};
+
+const objB = {
+    chaveB: 'B'
+    //__proto__: objA (modificado pela função abaixo)
+};
+
+const objC = new Object();
+objC.chaveC = 'C'; //maneira diferente de criar um objeto
+
+Object.setPrototypeOf(objB, objA); //modificar/configurar o prototype(objB);
+Object.setPrototypeOf(objC, objB);
+console.log(objB.chaveA);
+console.log(objC.chaveA);
+console.log(objC.chaveB);
+
+//OBS: NÃO MEXER COM O __PROTO__
+
+function Produto3(nome, preco){
+    this.nome = nome
+    this.preco = preco;
+}
+
+Produto3.prototype.desconto = function(percentual){
+    this.preco = this.preco - (this.preco * (percentual / 100));
+}; //para criar metodos dentro do prototype (RECOMENDADO)
+
+Produto3.prototype.aumento = function(percentual){
+    this.preco = this.preco + (this.preco * (percentual / 100)); //para criar metodos dentro do prototype (RECOMENDADO)
+};
+
+const produto3 = new Produto3('Camisa', 40);
+produto3.desconto(10); //utilizando os metodos dentro do prototype
+produto3.aumento(5);
+
+const produto4 = {
+    nome: 'Caneca',
+    preco: 25
+}
+
+Object.setPrototypeOf(produto4, Produto3.prototype); //utilizando um prototype de uma função construtora em um objeto
+
+produto4.desconto(10);
+console.log(produto4);
+console.log(produto3);
+
+//criando um objeto e configurando seu prototype ao mesmo tempo
+const produto5 = Object.create(Produto3.prototype, {
+    preco: {
+        writable: true,
+        configurable: true,
+        enumerable: true,
+        value: 34
+    },
+    cor: {
+        writable: true,
+        configurable: true,
+        enumerable: true,
+        value: 'preto'
+    },
+});
+produto5.aumento(10);
+console.log(produto5);
+
+/**
+ * 
+ *   PROXIMO ASSUNTO >>>>>>>>>>>
+ * 
+ */
+
+ console.log(' ');
+ console.log('Herança'); //titulo
+    function Criandoproduto(nome, preco){
+        this.nome = nome;
+        this.preco = preco;
+    }
+
+    Criandoproduto.prototype.aumento = function(quantia){
+        this.preco += quantia;
+    }
+    Criandoproduto.prototype.desconto = function(quantia){
+        this.preco -= quantia;
+    }
+
+    //especializando a função construtora original
+    function Camisas(nome, preco, cor){
+        Criandoproduto.call(this, nome, preco); //para chamar o prototype de uma outra função construtora;
+        this.cor = cor;
+    }
+
+    Camisas.prototype = Object.create(Criandoproduto.prototype); //linkar os prototype entre funções construtoras
+    Camisas.prototype.constructor = Camisas; // voltar com o construtor real (sem essa parte o construtor será da outra função construtora linkada anteriormente)
+
+    function Caneca(nome, preco, material, estoque){
+        Criandoproduto.call(this, nome, preco);
+        this.material = material;
+
+        Object.defineProperty(this, 'estoque', {
+            get: function(){
+                return estoque;
+            },
+            set: function(){
+                if(typeof valor !== 'number') return;
+                estoque = valor;
+            }
+        })
+    };
+    Caneca.prototype = Object.create(Criandoproduto.prototype);
+    Caneca.prototype.constructor = Caneca;
+
+    const camisas = new Camisas('Gola V', 20, 'azul');
+    const caneca = new Caneca('Caneca do Batman', 35, 'Cerâmica')
+    camisas.aumento(10); //aumento de 10 reais
+    caneca.desconto(5) //desconto de 5 reais
+    caneca.estoque = 10
+    console.log(camisas);
+    console.log(caneca);
+
+ /**
+ * 
+ *   PROXIMO ASSUNTO >>>>>>>>>>>
+ * 
+ */
+
+  console.log(' ');
+  console.log('Polimorfismo'); //titulo
+  //metodos se comportarem de formas diferente 
+  //superclasse
+    function Conta(agencia, conta, saldo){
+        this.agencia = agencia;
+        this.conta = conta;
+        this.saldo = saldo;
+    }
+    Conta.prototype.sacar = function(valor){
+        if(valor > this.saldo){
+            console.log(`Saldo insuficiente. Você tem:  R$${this.saldo} na sua conta`)
+            return
+        }
+        this.saldo -= valor
+        this.verSaldo();
+    };
+
+    Conta.prototype.depositar = function(valor){
+        this.saldo += valor
+        this.verSaldo();
+    };
+
+    Conta.prototype.verSaldo = function(){
+        console.log(`Agência: ${this.agencia} | Conta: ${this.conta} | Saldo: ${this.saldo.toFixed(2)}.`);
+    }
+
+    function ContaCorrente(agencia, conta, saldo, limite){
+        Conta.call(this, agencia, conta, saldo);
+        this.limite = limite;
+    };
+    ContaCorrente.prototype = Object.create(Conta.prototype);
+    ContaCorrente.prototype.constructor = ContaCorrente;
+
+    ContaCorrente.prototype.sacar = function(valor){
+        if(valor > (this.saldo + this.limite)){
+            console.log(`Saldo insuficiente. Você tem:  R$${this.saldo} na sua conta`)
+            return;
+        }
+        this.saldo -= valor
+        this.verSaldo();
+    };
+
+    //polimorfismo
+    function ContaPoupanca(agencia, conta, saldo){
+        Conta.call(this, agencia, conta, saldo);
+    };
+    ContaPoupanca.prototype = Object.create(Conta.prototype);
+    ContaPoupanca.prototype.constructor = ContaPoupanca;
+
+    const contacorrente = new ContaCorrente (11, 223456, 10, 100);
+    contacorrente.depositar(10)
+    contacorrente.sacar(120)
+    contacorrente.depositar(80)
+    console.log(' ');
+    const contapoupanca = new ContaPoupanca(12, 9876456, 30)
+    contapoupanca.depositar(5)
+    contapoupanca.sacar(40);
+    contapoupanca.depositar(10)
+    
+
+  /**
+ * 
+ *   PROXIMO ASSUNTO >>>>>>>>>>>
+ * 
+ */
+
+ console.log(' ');
+ console.log('Factory Functions + Pototypes'); //titulo
+
+ function criandoPessoa(nome, sobrenome){
+    const pessoaPrototype = {
+        falar(){
+            console.log(`${nome} está falando...`);
+        },
+
+        beber(){
+            console.log(`${nome} está bebendo...`);
+        },
+
+        comendo(){
+            console.log(`${nome} está comendo...`);
+        }
+    }
+    return Object.create(pessoaPrototype, {
+        nome: {
+            value: nome
+        },
+        sobrenome: {
+            value: sobrenome
+        }
+    });
+ }
+
+ const pessoa01 = criandoPessoa('Maria', 'Soares');
+ const pessoa02  = criandoPessoa('Matheus', 'Almeida');
+
+ pessoa01.falar();
+ pessoa02.beber();
+   /**
+ * 
+ *   PROXIMO ASSUNTO >>>>>>>>>>>
+ * 
+ */
+
+    console.log(' ');
+    console.log('Objeto Map()'); //titulo
