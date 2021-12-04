@@ -449,3 +449,17 @@ console.log(produto5);
 
     console.log(' ');
     console.log('Objeto Map()'); //titulo
+
+    const pessoas = [
+        {id: 3, nome:'Luiz'},
+        {id: 2, nome:'Maria'},
+        {id: 3, nome:'Luiza'},
+    ];
+
+    const novasPessoas = {};
+    for (const {id, nome} of pessoas){
+        novasPessoas[id] = {id, nome};
+        const {id} = pessoa;
+        novasPessoas[id] = {... pessoa};
+    }
+    console.log(novasPessoas);
