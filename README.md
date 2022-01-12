@@ -1,5 +1,5 @@
-# Curso de JavaScript - Básico ao avançado.
-Aqui eu compartilho minhas anotações e avanços do meu estudo de JavaScript tanto em bootcamp quanto nos cursos especificos.
+# Anotações de Estudos.
+Aqui eu compartilho minhas anotações e avanços do meu estudo de JavaScript tanto em bootcamp quanto nos cursos especificos, irei atualizando conforme vou estudando mais.
 
 **Assuntos**
 
@@ -12,9 +12,6 @@ Aqui eu compartilho minhas anotações e avanços do meu estudo de JavaScript ta
 - JavaScript assíncrono - Promises, Ajax, Fetch e Async/Await
 - JavaScript Tooling e ES6 Modules
 - JavaScript + Node (express + mongoDB)
-
-**Bônus**
-
 - Linux - Deploy da aplicação e segurança + chavesSSH
 - API REST - JavaScript, node, express e SQL (MySQL ou MariaDB)
 - Expressões regulares em JavaScript - Regex 
