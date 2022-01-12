@@ -1,5 +1,5 @@
 # Curso de JavaScript - Básico ao avançado.
-Aqui eu compartilho minhas anotações e avanços do meu estudo em JavaScript.
+Aqui eu compartilho minhas anotações e avanços do meu estudo de JavaScript tanto em bootcamp quanto nos cursos especificos.
 
 **Assuntos**
 
