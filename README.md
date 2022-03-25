@@ -1,7 +1,7 @@
 # Anotações de Estudos.
 Aqui eu compartilho minhas anotações e avanços do meu estudo de JavaScript e JavaSCript, irei atualizando conforme vou estudando mais.
 
-**Assuntos**
+<h2>Assuntos:</h2>
 
 - JavaScript Básico
 - Lógica de programação
