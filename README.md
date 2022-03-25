@@ -1,5 +1,5 @@
 # Anotações de Estudos.
-Aqui eu compartilho minhas anotações e avanços do meu estudo de JavaScript tanto em bootcamp quanto nos cursos especificos, irei atualizando conforme vou estudando mais.
+Aqui eu compartilho minhas anotações e avanços do meu estudo de JavaScript e JavaSCript, irei atualizando conforme vou estudando mais.
 
 **Assuntos**
 
